@@ -4,7 +4,8 @@ let table        = document.getElementById("employees");
 totalRow         = 0
 
 // SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
-
+let empCount = document.getElementById("empCount")
+empCount.innerHTML = `Total: ${totalRow}`; 
 
 // ADD EMPLOYEE
 form.addEventListener('submit', (e) => {
@@ -51,9 +52,9 @@ form.addEventListener('submit', (e) => {
     // CREATE THE DELETE BUTTON
     let deleteBtn = document.createElement("button")
     deleteBtn.setAttribute("id", "deleteBtn")
+    deleteBtn.setAttribute("action", "click")
     deleteBtn.innerText = "Delete"
-    cellDelBtn.appendChild(deleteBtn);
-    deleteBtn.addEventListener("click", deleteRow, false );
+    cellDelBtn.appendChild(deleteBtn);    
 
     // RESET THE FORM
     form.reset();
@@ -64,11 +65,19 @@ form.addEventListener('submit', (e) => {
 
     // INCREMENENT THE NUMBER OF EMPLOYEES IN THE TABLE
     totalRow += 1;
-
+    empCount.innerHTML = `Total: ${totalRow}`; 
 })
 
 // DELETE EMPLOYEE
-function deleteRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
-    document.getElementById("table").deleteRow(i);
-}
+table.addEventListener('click', function(e) {
+    if (window.confirm("Are you sure you delete this employee?")) {
+        if (e.target.tagName === 'BUTTON') {
+        const row = e.target.parentNode.parentNode;
+        const rowIndex = row.rowIndex;
+        table.deleteRow(rowIndex);
+        totalRow -= 1
+        empCount.innerHTML = `Total: ${totalRow}`;  
+        }
+    }
+  });
+
