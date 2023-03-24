@@ -46,11 +46,7 @@ form.addEventListener('submit', (e) => {
     cellEmail.appendChild(contentEmail);
 
     let contentDepartment =document.createTextNode(`${department}`)
-    cellDepartment.appendChild(contentDepartment);
-
-    // let contentDelBtn = document.createTextNode("X")    
-    // cellDelBtn.appendChild(contentDelBtn);   
-    
+    cellDepartment.appendChild(contentDepartment);    
 
     // CREATE THE DELETE BUTTON
     let deleteBtn = document.createElement("button")
